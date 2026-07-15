@@ -45,7 +45,7 @@ Start wherever feels natural, but aim to cover all four areas below.
 
 ### 1. Subscription Creation
 
-Describe what happens when a customer purchases a subscription during checkout.
+Describe what happens when a customer purchases a subscription for a physical product during checkout.
 
 Explain:
 
