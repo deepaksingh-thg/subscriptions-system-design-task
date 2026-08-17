@@ -2,7 +2,7 @@
 
 You are designing a Subscription Service for an ecommerce platform.
 
-The Subscription Service is the source of truth for subscription state. It is responsible for creating subscriptions during checkout, orchestrating recurring renewals, and managing the subscription lifecycle.
+The Subscription Service is the source of truth for subscription state. It is responsible for creating subscriptions during checkout, orchestrating recurring order generations, and managing the subscription lifecycle.
 
 You do not need to produce a perfect architecture. Focus on the overall design, service interactions, data ownership, failure handling, and the trade-offs behind your decisions.
 
@@ -15,7 +15,7 @@ A subscription contains:
 * Customer ID
 * Product SKU and quantity
 * Delivery frequency
-* Next renewal date
+* Next order generation trigger date
 * Status (e.g. Active, Paused, Cancelled)
 * Payment token reference
 * Shipping address reference
@@ -37,7 +37,7 @@ Assume the following services already exist:
 
 ## Your Task
 
-Talk through how you would design the Subscription Service.
+Talk through how you would design the Subscription Service, and how it would fit against those existing services.
 
 Start wherever feels natural, but aim to cover all four areas below.
 
@@ -49,7 +49,7 @@ Describe what happens when a customer purchases a subscription for a physical pr
 
 Explain:
 
-* How services interact
+* How existing services and the Subscription Service interact
 * Synchronous versus asynchronous communication
 * What data is stored by the Subscription Service
 * What events are published
@@ -57,17 +57,17 @@ Explain:
 
 ---
 
-### 2. Renewal Processing
+### 2. Recurring Order Generation Processing
 
-Describe how scheduled renewals are processed from start to finish.
+Describe how scheduled recurring order generations are processed.
 
 Consider:
 
-* How renewals are triggered
+* How order generations are triggered
 * Which services participate
 * Synchronous versus asynchronous communication
 * The overall data flow
-* The final outcome of a successful renewal
+* The final outcome of a successful order generation
 
 ---
 
