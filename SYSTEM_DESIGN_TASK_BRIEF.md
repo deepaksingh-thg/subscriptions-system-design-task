@@ -1,84 +1,54 @@
-# System Design Task: Subscription Service
-
-You are designing a **Subscription Service** for an ecommerce platform.
-
-The Subscription Service is the **source of truth for subscription state**. It creates subscriptions during checkout, generates recurring orders, and manages the subscription lifecycle.
-
----
-
-## Context
-
-A subscription contains:
-
-- Customer ID
-- Product SKU and quantity
-- Delivery frequency
-- Next order generation date
-- Status (e.g. Active, Paused, Cancelled)
-- Payment token reference
-- Shipping address reference
-
-### Existing Services
-
-Assume the following services already exist:
-
-- **Checkout** – orchestrates the customer purchase journey
-- **Payment** – charges customers and stores payment tokens
-- **Order Management** – creates and fulfils orders
-- **Stock** – checks product availability
-- **Notification** – sends emails and SMS
-- **Asynchronous Messaging Platform** – supports event-driven communication
-
----
-
 ## Your Task
 
-Talk through how you would design the Subscription Service and how it interacts with the existing services.
+Design the **Subscription Service** and show how it interacts with the existing services.
 
-### 1. Subscription Creation
+Start by drawing the high-level service flow for these two scenarios:
 
-Describe what happens when a customer purchases a subscription.
+### A. Initial Subscription Purchase
 
-Consider:
+A customer has selected a subscription product and reaches Checkout.
 
-- How the services interact
-- What should be synchronous vs asynchronous
-- What the Subscription Service owns and stores
+Show how:
 
-### 2. Recurring Order Generation
+- Checkout
+- Stock
+- Payment
+- Subscription Service
+- Order Management
+- Notification
 
-Describe how recurring orders are generated for active subscriptions.
+interact to complete the purchase.
 
-Consider:
+Explain which interactions are synchronous or asynchronous and what state is owned by Subscription Service.
 
-- How due subscriptions are identified and triggered
-- Which services are involved
-- What a successful recurring order flow looks like
+### B. Recurring Order
 
-### 3. Failure Handling
+The subscription reaches its next order generation date.
 
-Explain how your design handles scenarios such as:
+Show how Subscription Service triggers the next order without the customer going through Checkout again.
 
-- Payment failures
-- Products becoming unavailable
-- Duplicate or retried requests
-- Partial failures between services
+Explain:
 
-### 4. Running the Service
+- how the renewal is triggered
+- stock validation
+- payment
+- order creation
+- subscription state updates
+- notifications
 
-Describe how you would operate the service in production.
+### C. Failure Handling
 
-Consider:
+Using the design above, explain how you would handle:
 
-- State management
-- Monitoring and alerting
-- Scalability and high availability
-- Infrastructure choices
+- payment failure
+- out-of-stock products
+- duplicate/retried requests
+- partial service failures
 
----
+### D. Production Operation
 
-## Notes
+Briefly discuss:
 
-You do not need to define detailed APIs or database schemas.
-
-A high-level diagram and discussion of your design decisions and trade-offs is sufficient.
+- monitoring and alerting
+- scalability and availability
+- infrastructure choices
